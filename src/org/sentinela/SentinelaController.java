@@ -1,4 +1,4 @@
-package org.sentinela;
+																																																																																																																																																																																							package org.sentinela;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -21,7 +21,7 @@ class Exec extends AsyncTask<String, Void, String> {
     Ultrasonic us;
     
     Exec(Ultrasonic us) {
-        this.us = us;
+        this.us = us;																																																			
     }
 
 	@Override
@@ -91,9 +91,9 @@ public class SentinelaController extends Activity{
 	    txSpeed = (TextView) findViewById(R.id.txSpeedView);
 	    txSpeed.setText(Integer.toString(robo.getSpeed()));
 	    
-	    speedMore.setOnTouchListener(new View.OnTouchListener() {
-	    @Override
-	    	public boolean onTouch(View arg0, MotionEvent event) {
+	    //speedMore.setOnTouchListener(new View.OnTouchListener() {
+	   // @Override
+	    	/*public boolean onTouch(View arg0, MotionEvent event) {
 	    		if(event.getAction() == MotionEvent.ACTION_DOWN){
 	    			robo.forward();
 	    		}
@@ -166,7 +166,7 @@ public class SentinelaController extends Activity{
 	    		}
 	    		return true;
 	    	}
-	    });
+	    });*/
 	 }
 	 
 	 private final Handler mHandler = new Handler() {

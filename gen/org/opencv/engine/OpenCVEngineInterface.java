@@ -1,6 +1,6 @@
 /*
  * This file is auto-generated.  DO NOT MODIFY.
- * Original file: /home/mtoledo/ProjetoSentinela/src/org/opencv/engine/OpenCVEngineInterface.aidl
+ * Original file: /home/mtoledo/workspace/ProjetoSentinela/src/org/opencv/engine/OpenCVEngineInterface.aidl
  */
 package org.opencv.engine;
 /**

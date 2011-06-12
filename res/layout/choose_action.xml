@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@color/greenBack">
+
+   <Button
+	android:id="@+id/controllerButton"
+	android:layout_width="300dp"
+	android:layout_height="120dp"
+	android:layout_gravity="center"
+	android:background="@drawable/botao_procurar_back"
+    android:drawableTop="@drawable/botao_procurar_logo"
+	android:layout_marginBottom="10dip">
+	</Button>
+	
+   <Button
+	android:id="@+id/cameraButton"
+	android:layout_width="300dp"
+	android:layout_height="120dp"
+	android:layout_gravity="center"
+	android:background="@drawable/botao_procurar_back"
+    android:drawableTop="@drawable/botao_procurar_logo" >
+	</Button>
+</LinearLayout>

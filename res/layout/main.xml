@@ -4,9 +4,12 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello" />
+   <Button
+	android:id="@+id/connectButton"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:text="Conectar ao Sentinela" >
+	</Button>
+
 
 </LinearLayout>

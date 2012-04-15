@@ -1,6 +1,8 @@
 package org.sentinela;
 
 import android.app.Activity;
+import android.bluetooth.*;
+import android.content.Intent;
 import android.widget.Button;
 import android.os.Bundle;
 import android.view.View.OnClickListener;
@@ -23,6 +25,15 @@ public class SentinelaActivity extends Activity {
     }
     
     private void connectBluetooth(){
-    	//conect bluetooh
+    	BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    	if (mBluetoothAdapter == null) {
+    	    //Aparelho não suporta bluetooth
+    	}
+    	
+    	//Habilitando o bluetooth
+    	if (!mBluetoothAdapter.isEnabled()) {
+    	    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+    	    startActivityForResult(enableBtIntent, 0);
+    	}
     }
 }

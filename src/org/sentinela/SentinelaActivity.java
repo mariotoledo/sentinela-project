@@ -26,12 +26,11 @@ public class SentinelaActivity extends Activity {
         connectButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	connectBluetooth();
-                //v.setVisibility(View.GONE);
             }
         });
         
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        this.registerReceiver(mReceiver, filter);
+        this.registerReceiver(ultimateReceiver, filter);
         
         //filter = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         //this.registerReceiver(mReceiver, filter);
@@ -63,7 +62,7 @@ public class SentinelaActivity extends Activity {
     }
     
     //Delegate do ACTION_FOUND
-    private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver ultimateReceiver = new BroadcastReceiver() {
     	@Override
     	public void onReceive(Context arg0, Intent arg1) {
             String action = arg1.getAction();
@@ -71,6 +70,7 @@ public class SentinelaActivity extends Activity {
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = arg1.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
+                System.out.println("" + device.getName() + "\n" + device.getAddress());
             }
         }
     };

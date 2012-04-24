@@ -8,7 +8,7 @@
 	android:id="@+id/connectButton"
 	android:layout_width="fill_parent"
 	android:layout_height="wrap_content"
-	android:text="Conectar ao Sentinela" >
+	android:text="Procurar Sentinela" >
 	</Button>
 
 

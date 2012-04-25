@@ -15,11 +15,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.View;
 
 public class SentinelaActivity extends Activity {
-	
+	private static final int bluetooth_request = 1;
+    private static final int device_request = 2;
+    
+    BluetoothAdapter bluetoothAdapter;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,21 +36,48 @@ public class SentinelaActivity extends Activity {
             	connectBluetooth();
             }
         });
+        
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     }
     
     private void connectBluetooth(){
-    	BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-    	if (mBluetoothAdapter == null) {
+    	if (bluetoothAdapter == null) {
     	    //Aparelho n‹o suporta bluetooth
+    		System.out.println("Aparelho nao suporta bluetooth");
     	}
     	
     	//Habilitando o bluetooth
-    	if (!mBluetoothAdapter.isEnabled()) {
+    	if (!bluetoothAdapter.isEnabled()) {
     	    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-    	    startActivityForResult(enableBtIntent, 1);
+    	    startActivityForResult(enableBtIntent, bluetooth_request);
     	}
-    	
-    	Intent i = new Intent(SentinelaActivity.this, ConnectDeviceActivity.class);
-        startActivity(i);
-    }    
+    	else {
+    		openChooseDeviceActivity();
+    	}
+    }
+    
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+        	//retorno da requisição de ligar o bluetooth (caso ele não estivesse ligado)
+        	case bluetooth_request:
+        		if (resultCode == Activity.RESULT_OK) {
+        			openChooseDeviceActivity();
+        		}
+        		break;
+        	//Retorno da escolha do dispositivo, com o endereço do dispositivo
+        	case device_request:
+        		if (resultCode == Activity.RESULT_OK) {
+        			String endereco = data.getExtras().getString("device_address");
+        			BluetoothDevice device = bluetoothAdapter.getRemoteDevice(endereco);
+        			Log.v("teste", "endereço recebido: " + endereco);
+        		}
+        		break;
+        }
+    }
+    
+    private void openChooseDeviceActivity(){
+    	//mandando abrir a activity para escolha do dispositivo
+    	Intent intent = new Intent(this, ConnectDeviceActivity.class);
+        startActivityForResult(intent, device_request);
+    }
 }

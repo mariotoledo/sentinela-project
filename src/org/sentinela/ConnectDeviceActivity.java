@@ -20,15 +20,17 @@ import android.widget.TextView;
 public class ConnectDeviceActivity extends Activity{
 	
 	private ArrayAdapter<String> mArrayAdapter;
+	BluetoothAdapter mBluetoothAdapter;
+	ListView newDevicesListView;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 		 	super.onCreate(savedInstanceState);
 	        setContentView(R.layout.device_list);
 		 
-		 	ArrayList<String> aus = new ArrayList<String>();
+		 	//ArrayList<String> aus = new ArrayList<String>();
 	        mArrayAdapter = new ArrayAdapter<String>(this,R.layout.device_name);
 	        
-	        ListView newDevicesListView = (ListView) findViewById(R.id.new_devices);
+	        newDevicesListView = (ListView) findViewById(R.id.new_devices);
 	        newDevicesListView.setAdapter(mArrayAdapter);
 	        newDevicesListView.setOnItemClickListener(mDeviceClickListener);
 	        
@@ -39,7 +41,7 @@ public class ConnectDeviceActivity extends Activity{
 	 }
 	 
 	 private void doDiscovery() {
-		 	BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+		 	mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 	    	//cancela a busca atual e reinicia a busca
 	        if (mBluetoothAdapter.isDiscovering()) {
 	        	mBluetoothAdapter.cancelDiscovery();
@@ -68,8 +70,30 @@ public class ConnectDeviceActivity extends Activity{
 	    
 	    private OnItemClickListener mDeviceClickListener = new OnItemClickListener() {
 	        public void onItemClick(AdapterView<?> av, View v, int arg2, long arg3) {
-	            System.out.println("clicado");
+	        	mBluetoothAdapter.cancelDiscovery();
+	        	
+	        	String info = ((TextView) v).getText().toString();
+	            String address = info.substring(info.length() - 17);
+	            
+	            System.out.println("clicou e mandando de volta: " + address);
+	            
+	            //Retorna o endereço do bluetooth para a SentinelaActivity
+	            Intent intent = new Intent();
+	            intent.putExtra("device_address", address);
+	            
+	            setResult(Activity.RESULT_OK, intent);
+	            finish();
 	        }
 	    };
-
+	    
+	    //removendo listener ao sair da Activity (se n‹o tiver isto, da erro supremo)
+	    protected void onDestroy() {
+	        super.onDestroy();
+	        
+	        if (mBluetoothAdapter != null) {
+	        	mBluetoothAdapter.cancelDiscovery();
+	        }
+	        
+	        this.unregisterReceiver(ultimateReceiver);
+	    }
 }

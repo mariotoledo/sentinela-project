@@ -14,7 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View.OnClickListener;
 import android.view.View;
@@ -68,8 +71,11 @@ public class SentinelaActivity extends Activity {
         	case device_request:
         		if (resultCode == Activity.RESULT_OK) {
         			String endereco = data.getExtras().getString("device_address");
-        			BluetoothDevice device = bluetoothAdapter.getRemoteDevice(endereco);
-        			Log.v("teste", "endereço recebido: " + endereco);
+        			
+        			Intent i = new Intent(SentinelaActivity.this, SentinelaController.class);
+        			i.putExtra("adress", endereco);
+        			
+        			startActivity(i);
         		}
         		break;
         }

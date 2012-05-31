@@ -28,7 +28,6 @@ public class ConnectDeviceActivity extends Activity{
 		 	super.onCreate(savedInstanceState);
 	        setContentView(R.layout.device_list);
 		 
-		 	//ArrayList<String> aus = new ArrayList<String>();
 	        mArrayAdapter = new ArrayAdapter<String>(this,R.layout.device_name);
 	        
 	        newDevicesListView = (ListView) findViewById(R.id.new_devices);
@@ -64,7 +63,6 @@ public class ConnectDeviceActivity extends Activity{
 	            	
 	                BluetoothDevice device = arg1.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 	                mArrayAdapter.add(device.getName() + "\n" + device.getAddress());
-	                System.out.println("" + device.getName() + "\n" + device.getAddress());
 	            }
 	        }
 	    };
@@ -75,8 +73,6 @@ public class ConnectDeviceActivity extends Activity{
 	        	
 	        	String info = ((TextView) v).getText().toString();
 	            String address = info.substring(info.length() - 17);
-	            
-	            System.out.println("clicou e mandando de volta: " + address);
 	            
 	            //Retorna o endere�o do bluetooth para a SentinelaActivity
 	            Intent intent = new Intent();

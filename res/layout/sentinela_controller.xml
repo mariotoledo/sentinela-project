@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/moveFowardButton"
-        android:layout_width="52dp"
-        android:layout_height="99dp"
-        android:layout_weight="0.26" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <Button
+            android:id="@+id/moveBackwardButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="165dp"
+            android:text="..v.." />
+
+        <Button
+            android:id="@+id/moveRightButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignBaseline="@+id/moveBackwardButton"
+            android:layout_alignBottom="@+id/moveBackwardButton"
+            android:layout_toRightOf="@+id/moveBackwardButton"
+            android:text="....>" />
+
+        <Button
+            android:id="@+id/moveFowardButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_above="@+id/moveRightButton"
+            android:layout_alignLeft="@+id/moveBackwardButton"
+            android:text="..^.." />
+
+        <Button
+            android:id="@+id/moveLeftButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/moveFowardButton"
+            android:layout_toLeftOf="@+id/moveBackwardButton"
+            android:text="&lt;...." />
+
+
+
+        <Button
+            android:id="@+id/speedMore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/moveBackwardButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="64dp"
+            android:text="++++" />
+
+
+
+
+        <Button
+            android:id="@+id/speedLess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/speedMore"
+            android:layout_alignBottom="@+id/speedMore"
+            android:layout_toRightOf="@+id/speedMore"
+            android:text="-------" />
+
+
+
+        <TextView
+            android:id="@+id/txSpeedView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/speedLess"
+            android:layout_alignLeft="@+id/moveLeftButton"
+            android:layout_marginLeft="18dp"
+            android:text="TextView" />
+
+    </RelativeLayout>
 
 </LinearLayout>

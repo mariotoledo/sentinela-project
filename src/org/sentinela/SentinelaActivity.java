@@ -1,5 +1,6 @@
 package org.sentinela;
 
+import org.sentinela.R;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -45,7 +46,7 @@ public class SentinelaActivity extends Activity {
     
     private void connectBluetooth(){
     	if (bluetoothAdapter == null) {
-    	    //Aparelho n‹o suporta bluetooth
+    	    //Aparelho nï¿½o suporta bluetooth
     		System.out.println("Aparelho nao suporta bluetooth");
     	}
     	
@@ -61,13 +62,13 @@ public class SentinelaActivity extends Activity {
     
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-        	//retorno da requisição de ligar o bluetooth (caso ele não estivesse ligado)
+        	//retorno da requisiï¿½ï¿½o de ligar o bluetooth (caso ele nï¿½o estivesse ligado)
         	case bluetooth_request:
         		if (resultCode == Activity.RESULT_OK) {
         			openChooseDeviceActivity();
         		}
         		break;
-        	//Retorno da escolha do dispositivo, com o endereço do dispositivo
+        	//Retorno da escolha do dispositivo, com o endereï¿½o do dispositivo
         	case device_request:
         		if (resultCode == Activity.RESULT_OK) {
         			String endereco = data.getExtras().getString("device_address");
@@ -80,6 +81,12 @@ public class SentinelaActivity extends Activity {
         		break;
         }
     }
+    
+    @Override
+	 protected void onStop() {
+	     super.onStop();
+	     bluetoothAdapter.disable();
+	 }
     
     private void openChooseDeviceActivity(){
     	//mandando abrir a activity para escolha do dispositivo

@@ -1,5 +1,6 @@
 package org.sentinela;
 
+import org.sentinela.R;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -77,7 +78,7 @@ public class ConnectDeviceActivity extends Activity{
 	            
 	            System.out.println("clicou e mandando de volta: " + address);
 	            
-	            //Retorna o endereço do bluetooth para a SentinelaActivity
+	            //Retorna o endereï¿½o do bluetooth para a SentinelaActivity
 	            Intent intent = new Intent();
 	            intent.putExtra("device_address", address);
 	            
@@ -86,13 +87,15 @@ public class ConnectDeviceActivity extends Activity{
 	        }
 	    };
 	    
-	    //removendo listener ao sair da Activity (se n‹o tiver isto, da erro supremo)
+	    //removendo listener ao sair da Activity (se nï¿½o tiver isto, da erro supremo)
 	    protected void onDestroy() {
 	        super.onDestroy();
 	        
 	        if (mBluetoothAdapter != null) {
 	        	mBluetoothAdapter.cancelDiscovery();
 	        }
+	        
+	        mBluetoothAdapter.disable();
 	        
 	        this.unregisterReceiver(ultimateReceiver);
 	    }

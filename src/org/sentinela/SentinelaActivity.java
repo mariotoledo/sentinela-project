@@ -83,8 +83,8 @@ public class SentinelaActivity extends Activity {
     }
     
     @Override
-	 protected void onStop() {
-	     super.onStop();
+	 protected void onDestroy() {
+	     super.onDestroy();
 	     bluetoothAdapter.disable();
 	 }
     

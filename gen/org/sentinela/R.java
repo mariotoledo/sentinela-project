@@ -18,6 +18,7 @@ public final class R {
         public static final int botao_procurar_logo=0x7f020001;
         public static final int ic_launcher=0x7f020002;
         public static final int logosentinela=0x7f020003;
+        public static final int splashportrait=0x7f020004;
     }
     public static final class id {
         public static final int connectButton=0x7f060002;

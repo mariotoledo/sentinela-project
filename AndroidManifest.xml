@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".SentinelaActivity">
       </activity>
-        <activity android:name=".ConnectDeviceActivity" android:label="Procurando Sentinela...">
+        <activity android:name=".ConnectDeviceActivity" android:theme="@android:style/Theme.Dialog" android:label="Procurando Sentinela...">
       </activity>
       <activity android:name=".SentinelaController" android:label="Conectado ao Sentinela">
       </activity>

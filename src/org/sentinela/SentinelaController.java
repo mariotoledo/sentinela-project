@@ -59,8 +59,10 @@ public class SentinelaController extends Activity{
     Button speedLess;
     TextView txSpeed;
     
+    BluetoothAdapter bluetoothAdapter;
+    
     public void onDestroy(){
-    	
+    	bluetoothAdapter.disable();
     }
 	
     public void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class SentinelaController extends Activity{
     	Bundle extras = getIntent().getExtras();
     	String adress = extras.getString("adress");
     	
-    	BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    	bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 	        
     	BluetoothDevice device = bluetoothAdapter.getRemoteDevice(adress);
 	        
@@ -188,5 +190,6 @@ public class SentinelaController extends Activity{
 	 protected void onStop() {
 	     super.onStop();
 	     sc.stop();
+	     bluetoothAdapter.cancelDiscovery();
 	 }
 }

@@ -73,7 +73,7 @@ public class SentinelaActivity extends Activity {
         		if (resultCode == Activity.RESULT_OK) {
         			String endereco = data.getExtras().getString("device_address");
         			
-        			Intent i = new Intent(SentinelaActivity.this, SentinelaController.class);
+        			Intent i = new Intent(SentinelaActivity.this, ChooseAction.class);
         			i.putExtra("adress", endereco);
         			
         			startActivity(i);
